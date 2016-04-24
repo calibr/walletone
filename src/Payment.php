@@ -151,7 +151,7 @@ class Payment {
     if(!$params) {
       $params = $this->getFormPayload();
     }
-    ksort($params, SORT_NATURAL);
+    ksort($params, SORT_FLAG_CASE | SORT_STRING);
     $data = [];
     foreach($params as $value) {
       $data[] = $value;
