@@ -167,9 +167,13 @@ class Payment {
   public function getPaymentForm($options = []) {
     $defaultOptions = [
       "extraHTML" => "",
-      "formID" => ""
+      "formID" => "",
+      "autoSubmit" => false
     ];
     $options = array_merge($defaultOptions, $options);
+    if($options["autoSubmit"] && empty($options["formID"])) {
+      $options["formID"] = "form_".uniqid();
+    }
     $params = $this->getFormPayload();
     if(!empty($this->key)) {
       $signature = $this->getSignature();
@@ -183,6 +187,12 @@ class Payment {
     $html = implode("\n", $formHtml);
     $html .= $options["extraHTML"];
     $html .= "</form>";
+
+    if($options["autoSubmit"]) {
+      $html .= '
+        <script>document.getElementById("'.addslashes($options["formID"]).'").submit()</script>
+      ';
+    }
 
     return $html;
   }
