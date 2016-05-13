@@ -43,7 +43,7 @@ class Payment {
     return $this;
   }
 
-  public function getAmount($amount) {
+  public function getAmount() {
     return $this->amount;
   }
 
@@ -52,8 +52,8 @@ class Payment {
     return $this;
   }
 
-  public function getCurrencyId($currencyId) {
-    $this->currencyId;
+  public function getCurrencyId() {
+    return $this->currencyId;
   }
 
   public function setPaymentId($paymentId) {
