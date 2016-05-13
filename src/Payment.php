@@ -183,7 +183,7 @@ class Payment {
       $params["WMI_SIGNATURE"] = $signature;
     }
     $formHtml = [];
-    $formHtml[] = '<form id="'.$options["formID"].'" method="post" action="https://wl.walletone.com/checkout/checkout/Index">';
+    $formHtml[] = '<form id="'.$options["formID"].'" method="post" action="https://wl.walletone.com/checkout/checkout/Index" accept-charset="UTF-8">';
     foreach($params as $k => $v) {
       $formHtml[] = '<input type="hidden" name="'.$k.'" value="'.htmlspecialchars($v).'"/>';
     }
