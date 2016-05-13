@@ -62,7 +62,7 @@ class Payment {
   }
 
   public function getPaymentId() {
-    return $paymentId;
+    return $this->paymentId;
   }
 
   public function setDescription($description) {
