@@ -244,5 +244,13 @@ class Payment {
       }
     }
   }
+
+  public function getSuccessAnswer($message = "") {
+    $res = "WMI_RESULT=OK";
+    if($message) {
+      $res .= "&WMI_DESCRIPTION=".urlencode($message);
+    }
+    return $res;
+  }
 }
 
