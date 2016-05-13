@@ -136,7 +136,7 @@ class Payment {
       "WMI_PAYMENT_AMOUNT" => $this->amount,
       "WMI_CURRENCY_ID" => $this->currencyId,
       "WMI_PAYMENT_NO" => $this->paymentId,
-      "WMI_DESCRIPTION" => "BASE64:".base64_encode($this->description),
+      "WMI_DESCRIPTION" => $this->description,
       "WMI_EXPIRED_DATE" => $this->expiredDate,
       "WMI_SUCCESS_URL" => $this->successUrl,
       "WMI_FAIL_URL" => $this->failUrl
