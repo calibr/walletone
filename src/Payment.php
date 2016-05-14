@@ -31,6 +31,8 @@ class Payment {
 
   private $customParameters = [];
 
+  public $utf8 = false;
+
   public function __construct($merchantId, $key = "") {
     $this->merchantId = $merchantId;
     $this->key = $key;
@@ -158,7 +160,9 @@ class Payment {
     }
     $data[] = $this->key;
     $data = implode("", $data);
-    $data = iconv("utf-8", "windows-1251", $data);
+    if($this->utf8) {
+      $data = iconv("utf-8", "windows-1251", $data);
+    }
     $signature = base64_encode(
       pack(
         "H*",
@@ -184,7 +188,10 @@ class Payment {
       $params["WMI_SIGNATURE"] = $signature;
     }
     $formHtml = [];
-    $formHtml[] = '<meta charset="utf-8"><form id="'.$options["formID"].'" method="post" action="https://wl.walletone.com/checkout/checkout/Index" accept-charset="UTF-8">';
+    if($this->utf8) {
+      $formHtml[] = '<meta charset="utf-8">';
+    }
+    $formHtml[] = '<form id="'.$options["formID"].'" method="post" action="https://wl.walletone.com/checkout/checkout/Index" '.($this->utf8 ? 'accept-charset="UTF-8"' : '').'>';
     foreach($params as $k => $v) {
       $formHtml[] = '<input type="hidden" name="'.$k.'" value="'.htmlspecialchars($v).'"/>';
     }
