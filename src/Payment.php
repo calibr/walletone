@@ -88,6 +88,7 @@ class Payment {
 
   public function setExpiredDateTimestamp($time) {
     $d = new \DateTime(null, new \DateTimeZone("UTC"));
+    $d->setTimestamp($time);
     $date = $d->format("c");
     // get the part before +
     list($date) = explode("+", $date);
